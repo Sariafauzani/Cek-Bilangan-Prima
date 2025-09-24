@@ -5,24 +5,19 @@ void main() {
   stdout.write("Masukkan sebuah bilangan: "); // Meminta user memasukkan angka
   int n = int.parse(stdin.readLineSync()!); // Membaca input user dan ubah jadi integer
 
-  bool prima = true; // Variabel penanda apakah bilangan prima atau bukan
-
-  if (n < 2) {
-    prima = false; // Bilangan < 2 bukan bilangan prima
+// Panggil fungsi cekPrima dan tampilkan hasil
+  if (cekPrima(n)) {
+    print("$n adalah bilangan prima"); // Jika true
   } else {
-    // Perulangan dari 2 sampai n/2 untuk cek faktor pembagi
-    for (int i = 2; i <= n ~/ 2; i++) {
-      if (n % i == 0) { // Jika habis dibagi i → bukan prima
-        prima = false;
-        break; // Hentikan loop lebih awal
-      }
-    }
+    print("$n bukan bilangan prima"); // Jika false
   }
+}
 
-  // Tampilkan hasil
-  if (prima) {
-    print("$n adalah bilangan prima");
-  } else {
-    print("$n bukan bilangan prima");
+// Fungsi untuk mengecek apakah suatu bilangan prima
+bool cekPrima(int n) {
+  if (n < 2) return false; // Bilangan kurang dari 2 bukan prima
+  for (int i = 2; i <= n ~/ 2; i++) { // Loop dari 2 sampai n/2
+    if (n % i == 0) return false; // Jika ada pembagi selain 1 dan n → bukan prima
   }
+  return true; // Jika tidak ada pembagi → prima
 }
